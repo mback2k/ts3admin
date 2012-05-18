@@ -47,14 +47,14 @@ public class ScreenComposite extends Composite {
 		TabItem[] tabItems = this.tabFolder.getItems();
 		int tabIndex = this.tabFolder.getSelectionIndex();
 		if (tabIndex >= 0 && tabIndex < tabItems.length) {
-			return (ConnectionComposite)(tabItems[tabIndex].getControl());
+			return (ConnectionComposite) (tabItems[tabIndex].getControl());
 		}
 		return null;
 	}
 
 	public void refreshConnections() {
 		for (Control control : this.tabFolder.getChildren()) {
-			((ConnectionComposite)control).refresh();
+			((ConnectionComposite) control).refresh();
 		}
 	}
 

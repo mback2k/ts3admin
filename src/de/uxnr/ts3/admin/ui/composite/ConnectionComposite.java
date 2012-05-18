@@ -49,7 +49,7 @@ public class ConnectionComposite extends Composite {
 
 		this.tabItem = new TabItem(tabFolder, style);
 		this.tabItem.setControl(this);
-		this.tabItem.setText(hostname+":"+port);
+		this.tabItem.setText(hostname + ":" + port);
 
 		DisconnectAction.getInstance().setEnabled(true);
 		RefreshAction.getInstance().setEnabled(true);

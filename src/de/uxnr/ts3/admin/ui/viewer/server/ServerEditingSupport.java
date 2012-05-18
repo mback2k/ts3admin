@@ -8,7 +8,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.swt.SWT;
 
-
 import de.uxnr.ts3.admin.ui.composite.ConnectionComposite;
 import de.uxnr.ts3.admin.util.DialogHelper;
 import de.uxnr.ts3.api.Server;
@@ -51,7 +50,7 @@ public class ServerEditingSupport extends EditingSupport {
 
 	@Override
 	protected Object getValue(Object element) {
-		Server server = (Server)element;
+		Server server = (Server) element;
 		switch (this.columnIndex) {
 			case 1:
 				return server.getName();
@@ -63,7 +62,7 @@ public class ServerEditingSupport extends EditingSupport {
 
 	@Override
 	protected void setValue(Object element, Object value) {
-		Server server = (Server)element;
+		Server server = (Server) element;
 		try {
 			switch (this.columnIndex) {
 				case 1:

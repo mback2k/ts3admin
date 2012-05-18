@@ -8,7 +8,7 @@ import de.uxnr.ts3.api.Connection;
 public class ServerContentProvider implements IStructuredContentProvider {
 	@Override
 	public Object[] getElements(Object parent) {
-		return ((Connection)parent).getServers().toArray();
+		return ((Connection) parent).getServers().toArray();
 	}
 
 	@Override
