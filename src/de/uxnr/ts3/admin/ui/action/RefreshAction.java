@@ -10,33 +10,33 @@ import de.uxnr.ts3.admin.ui.composite.ScreenComposite;
 import de.uxnr.ts3.admin.ui.resource.IconDescriptor;
 
 public class RefreshAction extends Action implements SelectionListener {
-	private static RefreshAction uniqueInstance = null;
+  private static RefreshAction uniqueInstance = null;
 
-	private RefreshAction() {
-		super("&Refresh", new IconDescriptor("arrow_refresh"));
-		this.setEnabled(false);
-	}
+  private RefreshAction() {
+    super("&Refresh", new IconDescriptor("arrow_refresh"));
+    this.setEnabled(false);
+  }
 
-	public static RefreshAction getInstance() {
-		if (RefreshAction.uniqueInstance == null) {
-			RefreshAction.uniqueInstance = new RefreshAction();
-		}
-		return RefreshAction.uniqueInstance;
-	}
+  public static RefreshAction getInstance() {
+    if (RefreshAction.uniqueInstance == null) {
+      RefreshAction.uniqueInstance = new RefreshAction();
+    }
+    return RefreshAction.uniqueInstance;
+  }
 
-	@Override
-	public void run() {
-		ScreenComposite.getSelected().refreshConnections();
-	}
+  @Override
+  public void run() {
+    ScreenComposite.getSelected().refreshConnections();
+  }
 
-	@Override
-	public void widgetSelected(SelectionEvent e) {
-		ConnectionComposite connection = (ConnectionComposite) ((TabItem) e.item).getControl();
-		this.setEnabled(connection != null);
-	}
+  @Override
+  public void widgetSelected(SelectionEvent e) {
+    ConnectionComposite connection = (ConnectionComposite) ((TabItem) e.item).getControl();
+    this.setEnabled(connection != null);
+  }
 
-	@Override
-	public void widgetDefaultSelected(SelectionEvent e) {
-		this.widgetSelected(e);
-	}
+  @Override
+  public void widgetDefaultSelected(SelectionEvent e) {
+    this.widgetSelected(e);
+  }
 }

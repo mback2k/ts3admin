@@ -14,67 +14,67 @@ import de.uxnr.ts3.api.Server;
 import de.uxnr.ts3.net.ServerQueryError;
 
 public class ServerEditingSupport extends EditingSupport {
-	private CellEditor editor;
-	private int columnIndex;
+  private CellEditor editor;
+  private int columnIndex;
 
-	public ServerEditingSupport(ColumnViewer viewer, int columnIndex) {
-		super(viewer);
-		this.columnIndex = columnIndex;
-		switch (this.columnIndex) {
-			case 1:
-				this.editor = new TextCellEditor(((TableViewer) viewer).getTable());
-				break;
-			case 7:
-				this.editor = new CheckboxCellEditor(null, SWT.CHECK | SWT.READ_ONLY);
-				break;
-		}
-	}
+  public ServerEditingSupport(ColumnViewer viewer, int columnIndex) {
+    super(viewer);
+    this.columnIndex = columnIndex;
+    switch (this.columnIndex) {
+      case 1:
+        this.editor = new TextCellEditor(((TableViewer) viewer).getTable());
+        break;
+      case 7:
+        this.editor = new CheckboxCellEditor(null, SWT.CHECK | SWT.READ_ONLY);
+        break;
+    }
+  }
 
-	@Override
-	protected boolean canEdit(Object element) {
-		if (ConnectionComposite.getSelected().isAuthorized()) {
-			switch (this.columnIndex) {
-				case 1:
-					return true;
-				case 7:
-					return true;
-			}
-		}
-		return false;
-	}
+  @Override
+  protected boolean canEdit(Object element) {
+    if (ConnectionComposite.getSelected().isAuthorized()) {
+      switch (this.columnIndex) {
+        case 1:
+          return true;
+        case 7:
+          return true;
+      }
+    }
+    return false;
+  }
 
-	@Override
-	protected CellEditor getCellEditor(Object element) {
-		return this.editor;
-	}
+  @Override
+  protected CellEditor getCellEditor(Object element) {
+    return this.editor;
+  }
 
-	@Override
-	protected Object getValue(Object element) {
-		Server server = (Server) element;
-		switch (this.columnIndex) {
-			case 1:
-				return server.getName();
-			case 7:
-				return server.getAutostart();
-		}
-		return null;
-	}
+  @Override
+  protected Object getValue(Object element) {
+    Server server = (Server) element;
+    switch (this.columnIndex) {
+      case 1:
+        return server.getName();
+      case 7:
+        return server.getAutostart();
+    }
+    return null;
+  }
 
-	@Override
-	protected void setValue(Object element, Object value) {
-		Server server = (Server) element;
-		try {
-			switch (this.columnIndex) {
-				case 1:
-					server.setName((String) value);
-					break;
-				case 7:
-					server.setAutostart((Boolean) value);
-					break;
-			}
-		} catch (ServerQueryError e) {
-			DialogHelper.showWarning(this.getViewer().getControl().getShell(), e.getMessage());
-		}
-		this.getViewer().update(element, null);
-	}
+  @Override
+  protected void setValue(Object element, Object value) {
+    Server server = (Server) element;
+    try {
+      switch (this.columnIndex) {
+        case 1:
+          server.setName((String) value);
+          break;
+        case 7:
+          server.setAutostart((Boolean) value);
+          break;
+      }
+    } catch (ServerQueryError e) {
+      DialogHelper.showWarning(this.getViewer().getControl().getShell(), e.getMessage());
+    }
+    this.getViewer().update(element, null);
+  }
 }
